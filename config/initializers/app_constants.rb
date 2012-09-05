@@ -1,5 +1,5 @@
-COMPANY_NAME = "potosys"
-COMPANY_TITLE = "potosys"
+COMPANY_NAME = "LitePotosys"
+COMPANY_TITLE = "LitePotosys"
 =begin
   MODEL CONSTANT
 =end
@@ -37,8 +37,6 @@ USER_ROLE = {
   
   # AccountExecutive deals with the communication to clients
   :account_executive => "AccountExecutive",
-  :publisher => "Publisher",
-  :quality_control => "QC"
 }
 
 PROJECT_ROLE = {

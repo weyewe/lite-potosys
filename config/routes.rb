@@ -1,60 +1,50 @@
 LitePotosys::Application.routes.draw do
   devise_for :users
+  root :to => 'home#homepage'
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  resources :suppliers 
+  
+=begin
+  CREATING MASTER DATA for resources 
+=end
+  resources :packages do 
+    resources :package_assignments 
+    resources :deliverable_subcriptions 
+  end
+  
+  resources :deliverables do
+    resources :deliverable_components
+  end
+  
+ 
+=begin
+  SETUP, Create User +  Office Role
+=end
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  match 'new_employee_creation' => "offices#new_employee_creation", :as => :new_employee_creation
+  match 'create_employee' => "offices#create_employee" , :as => :create_employee, :method => :post 
+  match 'show_role_for_employee/:employee_id' => "offices#show_role_for_employee" , :as => :show_role_for_employee
+  match 'assign_role_for_employee' => "offices#assign_role_for_employee" , :as => :assign_role_for_employee, :method => :post
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+=begin
+  MASTER DATA, company specific
+  CREATE DELIVERABLE  + PACKAGE
+=end
+  match 'select_deliverable_to_create_component' => 'deliverables#select_deliverable_to_create_component', :as => :select_deliverable_to_create_component
+  
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  match 'create_package_assignment' => 'package_assignments#create_package_assignment', :as => :create_package_assignment, :method => :post 
+  match 'edit_price_package/:package_id/crew/:crew_id' => 'package_assignments#edit_crew_specific_package_price', :as => :edit_crew_specific_package_price, :method => :post 
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  match 'contact_person_info/:supplier_id' => 'suppliers#contact_person_info', :as => :contact_person_info
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+    
+=begin
+  INITIATE BACK OFFICE PROCESS : assign project Membership + PROJECT ROLE to employee
+=end
+  match 'select_project_for_project_membership_assignment' => 'projects#select_project_for_project_membership_assignment', :as => :select_project_for_project_membership_assignment
+  match 'select_role_to_assign_employee/:project_id' => 'projects#select_role_to_assign_employee', :as => :select_role_to_assign_employee
+  match 'assign_member_with_selected_project_role/:project_role_id/to_project/:project_id' => 'project_memberships#assign_member_with_selected_project_role_to_project', :as => :assign_member_with_selected_project_role_to_project
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

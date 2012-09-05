@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :job_attachments
   
   validates :email, :presence => true, :email => true
+  validates_presence_of :name 
      
 =begin
   PROJECT SPECIFIC

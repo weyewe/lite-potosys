@@ -62,84 +62,99 @@ admin_employee = office.create_main_user( [admin_role,project_manager_head_role,
                             production_head_role,  post_production_head_role], 
                   :email => 'admin@gmail.com',
                   :password => 'willy1234',
-                  :password_confirmation => 'willy1234'  ) 
+                  :password_confirmation => 'willy1234',
+                  :name => "Admin"  ) 
  
    
                     
-project_manager_head = office.create_user( [project_manager_head_role], 
+project_manager_head = office.create_user( admin_employee, [project_manager_head_role], 
                     :email => 'pm_head@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "PM Head"  )
                     
-project_manager  = office.create_user( [project_manager_role], 
+project_manager  = office.create_user( admin_employee, [project_manager_role], 
                     :email => 'pm1@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "PM 1"  )
                     
                     
-pm2  = office.create_user( [project_manager_role], 
+pm2  = office.create_user(admin_employee, [project_manager_role], 
                     :email => 'pm2@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "PM2"  )
                     
  
                     
-production_head = office.create_user( [production_head_role], 
+production_head = office.create_user( admin_employee,[production_head_role], 
                     :email => 'prod_head@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "Prod Head"  )
                     
-production_1 = office.create_user( [production_role], 
+production_1 = office.create_user(admin_employee, [production_role], 
                     :email => 'prod_1@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "Prod 1" )
                     
-production_2 = office.create_user( [production_role], 
+production_2 = office.create_user(admin_employee, [production_role], 
                     :email => 'prod_2@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234' ,
+                    :name => "Prod 2" )
     
-pp_head = office.create_user( [post_production_head_role], 
+pp_head = office.create_user(admin_employee, [post_production_head_role], 
                     :email => 'pp_head@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "PP Head"  )
                     
-pp1 = office.create_user( [post_production_role], 
+pp1 = office.create_user(admin_employee, [post_production_role], 
                     :email => 'pp1@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "PP1"  )
                     
-pp2 = office.create_user( [post_production_role], 
+pp2 = office.create_user( admin_employee,[post_production_role], 
                     :email => 'pp2@gmail.com',
                     :password => 'willy1234',
-                    :password_confirmation => 'willy1234'  )
+                    :password_confirmation => 'willy1234',
+                    :name => "PP2"  )
  
-account_executive =   office.create_user( [account_executive_role], 
+account_executive =   office.create_user( admin_employee,[account_executive_role], 
                       :email => 'ae1@gmail.com',
                       :password => 'willy1234',
-                      :password_confirmation => 'willy1234'  )
+                      :password_confirmation => 'willy1234',
+                      :name => "AE1"  )
  
-ae2 =   office.create_user( [account_executive_role], 
+ae2 =   office.create_user(admin_employee, [account_executive_role], 
                       :email => 'ae2@gmail.com',
                       :password => 'willy1234',
-                      :password_confirmation => 'willy1234'  )
+                      :password_confirmation => 'willy1234',
+                      :name => "AE2"  )
          
 
 puts "creating crew"
-crew1 = office.create_user( [crew_role], 
+crew1 = office.create_user( admin_employee,[crew_role], 
                   :email => 'crew1@gmail.com',
                   :password => 'willy1234',
-                  :password_confirmation => 'willy1234'  )
+                  :password_confirmation => 'willy1234',
+                  :name => "Crew 1"  )
                   
-crew2 = office.create_user( [crew_role], 
+crew2 = office.create_user(admin_employee, [crew_role], 
                   :email => 'crew2@gmail.com',
                   :password => 'willy1234',
-                  :password_confirmation => 'willy1234'  )
+                  :password_confirmation => 'willy1234',
+                  :name => "Crew 2"  )
                   
-crew3 = office.create_user( [crew_role], 
+crew3 = office.create_user( admin_employee, [crew_role], 
                   :email => 'crew3@gmail.com',
                   :password => 'willy1234',
-                  :password_confirmation => 'willy1234'  )
+                  :password_confirmation => 'willy1234',
+                  :name => "Crew 3"  )
 
 
      
@@ -234,4 +249,6 @@ package_3.assign_deliverable(admin_employee, :deliverable_id => framed_canvas_60
 
  
  
- 
+puts "\n\n***DONE WITH PRODUCT DATA: PACKAGE, DELIVERABLE, DELIVERABLE COMPONENT*****\n\n"
+puts "Ready to solve the real problem: create project, select package, \nassign core employee, create concept " + 
+  "store data, monitor production \n and monitor post_production"

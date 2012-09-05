@@ -1,0 +1,77 @@
+<tr>
+  <td>
+    <%= link_to employee.name , show_role_for_employee_url(employee) %>
+  </td>
+  <td>
+    <% if employee.has_role?(:admin)%>
+      <span class="label label-success">Yes</span>
+    <% else %>
+      <span class="label">No</span>
+    <% end %>
+  </td>
+  
+  
+  <td>
+    <% if employee.has_role?(:crew)%>
+      <span class="label label-success">Yes</span>
+    <% else %>
+      <span class="label">No</span>
+    <% end %>
+  </td>
+  
+   
+  
+   
+  
+  <td>
+    <% if not employee.has_role?(:project_manager_head) and not employee.has_role?(:project_manager)%>
+      <span class="label">No</span>
+    <% else %>
+      <% if employee.has_role?(:project_manager_head)  %>
+        <span class="label label-success">Head</span> 
+      <% end %>
+    
+      <% if employee.has_role?(:project_manager) and not employee.has_role?(:project_manager_head)%>
+        <span class="label label-success">Yes</span> 
+      <% end %>
+    <% end %>
+  </td>
+  
+  <td>
+    <% if not employee.has_role?(:production_head) and not employee.has_role?(:production)%>
+      <span class="label">No</span>
+    <% else %>
+      <% if employee.has_role?(:production_head)  %>
+        <span class="label label-success">Head</span> 
+      <% end %>
+    
+      <% if employee.has_role?(:production) and not employee.has_role?(:production_head)%>
+        <span class="label label-success">Yes</span> 
+      <% end %>
+    <% end %>
+  </td>
+  
+  <td>
+    <% if employee.has_role?(:account_executive)%>
+      <span class="label label-success">Yes</span>
+    <% else %>
+      <span class="label">No</span>
+    <% end %>
+  </td>
+  
+  <td>
+    <% if not employee.has_role?(:post_production_head) and not employee.has_role?(:post_production)%>
+      <span class="label">No</span>
+    <% else %>
+      <% if employee.has_role?(:post_production_head)  %>
+        <span class="label label-success">Head</span> 
+      <% end %>
+    
+      <% if employee.has_role?(:post_production) and not employee.has_role?(:post_production_head)%>
+        <span class="label label-success">Yes</span> 
+      <% end %>
+    <% end %>
+  </td>
+  
+  
+</tr>

@@ -3,6 +3,7 @@ class CreateDeliverableComponents < ActiveRecord::Migration
     create_table :deliverable_components do |t| 
       t.string :name
       t.integer :deliverable_id 
+      t.boolean :is_deleted => false 
       
       t.integer :office_id
 

@@ -10,12 +10,14 @@ class Office < ActiveRecord::Base
 =begin
   CREATING USER
 =end
-  def create_employee_by_email( email )
-    user = User.create :email => email, :password => 'willy1234', 
+  def create_employee_by_email( employee, email, name  )
+    user = User.create :email => email, 
+      :name => name, 
+      :password => 'willy1234', 
       :password_confirmation => 'willy1234'
 
     if not user.valid? 
-      return nil
+      return user
     else
       JobAttachment.create(:office_id => self.id, :user_id => user.id)
       return user 
@@ -37,17 +39,17 @@ class Office < ActiveRecord::Base
   end
 
   def create_main_user(role_list, user_hash) 
-    user = self.create_user(role_list, user_hash)
+    user = self.create_basic_user(role_list, user_hash)
     self.main_user_id = user.id 
     self.save
     return user 
   end
-
-  def create_user(role_list, user_hash)
+  
+  def create_basic_user(role_list, user_hash)
     new_user = User.new(user_hash)
 
     if not new_user.save
-      return nil
+      return new_user
     end
 
     job_attachment = JobAttachment.create(:user_id => new_user.id, :office_id => self.id)
@@ -56,7 +58,27 @@ class Office < ActiveRecord::Base
       Assignment.create_role_assignment_if_not_exists( role,  new_user)
     end
 
-    return new_user 
+    return new_user
+  end
+
+  def create_user(employee, role_list, user_hash)
+    if not employee.has_role?(:admin)
+      return nil
+    end
+     #    
+     # new_user = User.new(user_hash)
+     # 
+     # if not new_user.save
+     #   return new_user
+     # end
+     # 
+     # job_attachment = JobAttachment.create(:user_id => new_user.id, :office_id => self.id)
+     # 
+     # role_list.each do |role|
+     #   Assignment.create_role_assignment_if_not_exists( role,  new_user)
+     # end
+ 
+    return self.create_basic_user(role_list, user_hash) 
   end
   
   

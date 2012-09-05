@@ -1,0 +1,57 @@
+<div class="span3 process-nav" id="process_nav_wrapper">
+   <div class="well sidebar-nav">
+     
+
+      <% if current_user.has_role?(:admin) %>
+        
+        <%= get_process_nav( :employee_management , params ).html_safe %> 
+        <%= get_process_nav( :product_management , params ).html_safe %> 
+        <%= get_process_nav( :supplier_management , params ).html_safe %> 
+        
+        
+      <% end %>
+      
+      <%# if  current_user.has_role?(:marketing_head)   %> 
+        <%#= get_process_nav( :marketing_management , params ).html_safe %>   
+      <%# end %>
+      
+      <%# if current_user.has_role?(:marketing)   %> 
+        <%#= get_process_nav( :marketing , params ).html_safe %> 
+        <%#= get_process_nav( :sales_order_creation , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:project_manager_head)   %> 
+        <%#= get_process_nav( :project_management_head , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:project_manager )   %> 
+        <%#= get_process_nav( :project_management  , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:account_executive)   %> 
+        <%#= get_process_nav( :account_executive , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:graphic_designer)   %> 
+        <%#= get_process_nav( :graphic_designer , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:post_production)   %> 
+        <%#= get_process_nav( :post_production , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:manager) %>
+        <%#= get_process_nav( :machine_builder , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:marketing ) %>
+        <%#= get_process_nav( :account_manager , params ).html_safe %> 
+      <%# end %>
+      
+      <%# if current_user.has_role?(:publisher) %>
+        <%#= get_process_nav( :publisher , params ).html_safe %> 
+      <%# end %>
+      
+ 
+   </div><!--/.well -->
+ </div><!--/span-->
