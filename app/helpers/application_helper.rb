@@ -622,10 +622,10 @@ module ApplicationHelper
   
   
   PROJECT_MANAGEMENT_HEAD_PROCESS_LIST = {
-    :header_title => "Head Project Manager",
+    :header_title => "PM Head",
     :processes => [
       {
-        :title => "Employee Assignment",
+        :title => "Create Project",
         :destination_link => "select_project_for_project_membership_assignment_url",
         :conditions => [
           {
@@ -647,7 +647,7 @@ module ApplicationHelper
         ]
       },
       {
-        :title => "Pending Start",
+        :title => "Active Projects",
         :destination_link => "select_project_to_be_started_url",
         :conditions => [
           {
@@ -657,7 +657,7 @@ module ApplicationHelper
         ]
       } ,
       {
-        :title => "Monitor Projects + Close",
+        :title => "Concept Phase",
         :destination_link => "select_project_to_be_closed_url",
         :conditions => [
           {
@@ -667,7 +667,17 @@ module ApplicationHelper
         ]
       },
       {
-        :title => "Finished Project",
+        :title => "Production Phase",
+        :destination_link => "show_finished_projects_url",
+        :conditions => [
+          {
+            :controller =>'projects',
+            :action => 'show_finished_projects'
+          } 
+        ]
+      },
+      {
+        :title => "Post Production Phase",
         :destination_link => "show_finished_projects_url",
         :conditions => [
           {
